@@ -1,0 +1,81 @@
+{% extends 'donor/donorbase.html' %}
+
+{% block title %}
+    BPMS | Patient request history
+{% endblock %}
+
+{% block content %}
+    {% load widget_tweaks %}
+    {%load static%}
+    <br><br>
+    <div class="container">
+        <H4 class="text-center">My Blood Request</H4><br>
+        <table class="table table-light table-hover table-bordered table-striped">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Patient Age</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Blood Group</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Hospital Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in details %}
+                <tr>
+                    <td> {{t.patient_name}}</td>
+                    <td>{{t.patient_age}}</td>
+                    <td>{{t.reason}}</td>
+                    <td>{{t.bloodgroup}}</td>
+                    <td>{{t.unit}}</td>
+                    <td>{{t.date}}</td>
+                    <td>{{t.hospital_name}}</td>
+                    {% if t.status == 'Approved' %}
+                    <td><span class="label warning"> Approved</span></td>
+                    {% elif t.status == 'Rejected' %}
+                    <td><span class="label success">Rejected</span></td>
+                    {% else %}
+                    <td><span style="color: white;margin-left: 0px;" class="label info">Pending</span></td>
+                    {% endif %}
+                    <td>
+                        <form action="{% url 'patient-request-history' t.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" name="approved" class="btn_b1" value="Approved">
+                            <input type="submit" name="rejected" class="btn_b2" value="Rejected">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <style>
+        .label {
+            color: white;
+            padding: 8px;
+        }
+        .success {background-color: #4CAF50;} /* Green */
+        .info {background-color: #2196F3;} /* Blue */
+        .warning {background-color: #ff9800;} /* Orange */
+        .btn_b1{
+            background: #4dae3c;
+            padding: 5px;
+            color: white;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn_b2{
+            background: goldenrod;
+            padding: 5px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+{% endblock content %}

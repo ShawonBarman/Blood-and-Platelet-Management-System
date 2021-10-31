@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BPMS | Available Donor
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <section class="doctors">
+        <div class="container-fluid">
+            <div class="row text-center doctorheader">
+                <div class="col-12">
+                    <h2 id="team" class="color">Donors</h2>
+                </div>
+            </div>
+            <hr class="doctorhr">
+        </div>
+        <!--card code starting here-->
+        <div class="container-fluid padding">
+            <div class="row padding">
+                {% for d in donors %}
+                    <div class="col-md-4">
+                        <div class="card m-2 p-3" id="{{ d.donor_id }}">
+                            <img class="card-img-top" src="{% static 'default.png' %}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ d.user.first_name }} {{ d.user.last_name }}</h4>
+                                <p class="card-text">Blood Group: {{ d.bloodgroup }}</p>
+                                <p class="card-text">Address: {{ d.address }}</p>
+                                <form action="{% url 'makeRequest' d.id %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="submit" class="btn btn-success text-light" value="Make Request">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+<style>
+    section.doctors {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    hr.doctorhr {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    .card{
+        width: 25rem;
+        margin: 0 20px 30px 0;
+        border-radius:30px;
+        background: #283747;
+    }
+    .card .card-img-top{
+        border-radius:30px;
+        height:220px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+        border: 1px solid blue;
+    }
+    .card-title{
+        font-size: 20px;
+        color: #f0f0f0;
+    }
+    .card-text{
+        font-size: 15px;
+        color: #f0f0f0;
+        margin-bottom: 5px;
+    }
+    .card-body .btn.btn-success {
+        padding: 0 65px;
+        border-radius: 50px;
+        margin: 20px 0 0 0;
+        border: none;
+        transition: 0.6s;
+    }
+</style>
+
+{% endblock %}

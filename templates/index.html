@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BPMS | Home
+{% endblock %}
+
+
+{% block content %}
+    {% load static %}
+    <!--carousel slide code starting here-->
+    <div id="slides" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="backgroundimg" src="{% static 'image/img.png' %}" alt="picture_slider_1">
+                <div style="background: rgba(0, 0, 0, 0.45);" class="carousel-caption">
+                    <h1 class="display-2">Welcome To Our BPMS Website</h1>
+                    <h3>We provides proper blood for better and healthy life.</h3>
+                    <a href="{% url 'available_donor' %}"><button type="button" class="btn btn-border mx-2">Available donor</button></a>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#slides" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#slides" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <!--carousel slide coding end here-->
+    <!--about section coding start here-->
+    <section id="our_vision" class="ourvision-section">
+        <div class="about-image">
+            <img class="about-img" src="{% static 'image/our_vision.jpeg' %}" alt="">
+        </div>
+        <div class="about-div">
+            <h1 class="about-h1">Our vision</h1>
+            <p class="about-p1">Blood Buddies is for public donationcenter with blood donation members in the changing health care system. Specialist blood donors and clinical supervision. Increasing communication with our members. High quality assessment, diagnosis and treatment. Examine critically to ensure alignment. The extra care of a multidisciplinary team.</p>
+            <p class="about-p2">We are committed to educating the community, inspiring donation, and connecting lives.</p>
+        </div>
+    </section>
+    <section id="donor_opinion" class="ourvision-section">
+        <div class="about-div">
+            <h1 class="about-h1">Donor Opinion</h1>
+            <p class="about-p1">I wish I could tell you my donor how grateful I am for your selfless act. You gave me new life. We may be coworkers or schoolmates or just two in the same community. I'm very grateful to you. Most of today's donors are old farts like me! We need a new crop of young folks to start donating because us "old guys" aren't going to live forever.</p>
+            <p class="about-p2">I'm in favor of it! Of course, I'm biased because I have done it so many times. I wish that more people wo were capable of donating blood would do it.</p>
+        </div>
+        <div class="about-image">
+            <img class="about-img" src="{% static 'image/donor_opinion.jpeg' %}" alt="">
+        </div>
+    </section>
+    <section id="user_opinion" class="ourvision-section">
+        <div class="about-image">
+            <img class="about-img" src="{% static 'image/user_opinion.jpeg' %}" alt="">
+        </div>
+        <div class="about-div">
+            <h1 class="about-h1">Patient Opinion</h1>
+            <p class="user_opinion-p1">Since the institution of blood banking, safety for both donors and blood recipients has been continually and significantly improved. Because a safe, reliable source of blood is critical to providing effective blood products to recipients, blood banks are dependent on the altruistic voluntary donations of citizens. As a result, blod banks place great emphasis on making the donation process pleasant, convenient, and as safe as possible for donors.</p>
+            <p class="user_opinion-p2">Yes, by donating blood you'll be saving up to three human lives each time. And here is even more awesome news; not only is donating blood extremely beneficial to those on the receiving end, it also has proven benefits to the person donating blood.</p>
+        </div>
+    </section>
+<!--about section coding end here-->
+    <section id="contact" class="site-section section-form text-center">
+            <div class="container-fluid">
+                <h2 class="color">Contact Us</h2>
+                <hr>
+                <form method="POST" name="form" class="container">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="name" class="form-control mt-x-0" placeholder="Name" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea name="message" id="mesaage" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="submit" class="btn btn-border">
+                    </div>
+                </form>
+            </div>
+    </section><!-- /.section-form -->
+    <style>
+        .backgroundimg {
+            width: 100%;
+            height: 600px;
+        }
+        .carousel-caption{
+             position: absolute;
+            height: 260px;
+             top: 45%;
+             transform: translateY(-50%);
+             color: #f0f0f0;
+             font-weight: bolder;
+        }
+        .carousel-caption h1{
+             margin-top:30px;
+             font-size: 300%;
+             text-transform: uppercase;
+        }
+        .carousel-caption h3{
+             font-size: 180%;
+             padding-bottom: 1rem;
+        }
+        .carousel-caption .btn-border{color: #c7ecee;}
+        .carousel-inner .carousel-item {
+             -webkit-transition: 1.8s;
+             -moz-transition: 1.8s;
+             -o-transition: 2s;
+             transition: 1.5s;
+        }
+
+        #our_vision{
+            margin: 5rem auto;
+            width: 80rem;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+        }
+        .about-img{
+            width: 40rem;
+            border-radius: 1rem;
+            -webkit-border-radius: 1rem;
+            -moz-border-radius: 1rem;
+            -ms-border-radius: 1rem;
+            -o-border-radius: 1rem;
+        }
+
+        #our_vision .about-div{
+            margin-left: 3rem;
+            text-align: justify;
+        }
+        .about-h1{
+            display: inline-block;
+            border-bottom: 3px solid red;
+        }
+        .about-p1{
+            margin-top: 1.2rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-p2{
+            font-size: 1.6rem;
+            color: #f50b0b;
+            font-weight: bolder;
+            margin-bottom: 0.6rem;
+        }
+
+        #donor_opinion{
+            margin: 5rem auto;
+            width: 80rem;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+        }
+        #donor_opinion .about-div{
+            margin-right: 3rem;
+            text-align: justify;
+        }
+        #user_opinion{
+            margin: 5rem auto;
+            width: 80rem;
+            height: 65vh;
+            display: flex;
+            justify-content: center;
+        }
+        #user_opinion .about-div{
+            margin-left: 3rem;
+            text-align: justify;
+        }
+        .user_opinion-p1{
+            margin-top: 1.3rem;
+            font-size: 1rem;
+            margin-bottom: 1.4rem;
+        }
+        .user_opinion-p2{
+            font-size: 1.4rem;
+            color: #f50b0b;
+            font-weight: bolder;
+            margin-bottom: 0.6rem;
+        }
+    </style>
+{% endblock %}
+<!--carousel slide code starting here-->

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BPMS | About Us
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <header>
+        <div class="header-section">
+            <h1 class="head-text1">About Us</h1>
+            <p class="p-text1">Every blood donor is a life sarver.</p>
+            <h1 class="head-text1">Students at University of Asia Pacific</h1>
+        </div>
+    </header>
+    <div class="text">
+        Nature of the Organization: It is totally non-political, non-communal, non-regional, non-racial, secular and voluntary social orginization. Goals and objectives: Initiating social movement to build up a healthy society through motivating voluntary blood donation, donating blood voluntarily and others services and awareness programs. Programs: Motivating Students and Young generation of Bangladesh to donate blood voluntarily. Free blood group test. Donating blood voluntarily for patients. Motivating people for voluntary blood donation and taking part in service and awareness program. Taking relief and rehabilitation programs to overcome natural and human created calamities.
+    </div>
+    <style>
+        header{
+            background-image: url('../static/image/about_us.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 70vh;
+        }
+
+        .header-section{
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            height: 70vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .head-text1{
+            font-size: 3rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .p-text1{
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+            width: 45rem;
+            color: red;
+        }
+        .text{
+            margin: 50px 30px;
+            font-weight: bolder;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+
+{% endblock %}
